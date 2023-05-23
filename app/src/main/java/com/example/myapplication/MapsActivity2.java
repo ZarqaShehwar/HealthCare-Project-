@@ -1,28 +1,38 @@
 package com.example.myapplication;
 
+import static com.google.android.gms.maps.GoogleMap.MAP_TYPE_SATELLITE;
+
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.widget.FrameLayout;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.example.myapplication.databinding.ActivityMapsBinding;
+import com.example.myapplication.databinding.ActivityMaps2Binding;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private ActivityMapsBinding binding;
+    FrameLayout map;
+    private ActivityMaps2Binding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityMapsBinding.inflate(getLayoutInflater());
+        binding = ActivityMaps2Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        map= findViewById(R.id.map);
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -44,8 +54,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-    }
+        LatLng pakistan = new LatLng(33.738045, 73.084488);
+        mMap.addMarker(new MarkerOptions().position(pakistan).title("Marker in Islambad"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(pakistan));
+if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)==PackageManager.PERMISSION_GRANTED){
+    mMap.setMyLocationEnabled(true);
+
+}
+
+mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+
+}
 }
