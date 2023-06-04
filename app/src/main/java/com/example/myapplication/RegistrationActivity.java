@@ -80,6 +80,7 @@ FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
                                                     @Override
                                                     public void onSuccess(DocumentReference documentReference) {
                                                         Toast.makeText(getApplicationContext(), "Successful", Toast.LENGTH_SHORT).show();
+                                                        startActivity(new Intent(RegistrationActivity.this,HomeActivity.class));
 
                                                     }
                                                 }).addOnFailureListener(new OnFailureListener() {
@@ -105,12 +106,11 @@ FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
 
         }
-    public static boolean isValid(String passwordhere){
-        int f1=0,f2=0,f3=0;
-        if(passwordhere.length()<8){
+    public static boolean isValid(String passwordhere) {
+        int f1 = 0, f2 = 0;
+        if (passwordhere.length() < 8) {
             return false;
-        }
-        else {
+        } else {
             for (int p = 0; p < passwordhere.length(); p++) {
                 if (Character.isLetter(passwordhere.charAt(p))) {
                     f1 = 1;
@@ -121,14 +121,15 @@ FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
                     f2 = 1;
                 }
             }
-            for ( int s1 = 0; s1 < passwordhere.length(); s1++) {
-                char s = passwordhere.charAt(s1);
-                if (s > 33 & s < 44 || s == 64) {
-                    f3 = 1;
-                }
-            }
+//            for ( int s1 = 0; s1 < passwordhere.length(); s1++) {
+//                char s = passwordhere.charAt(s1);
+//                if (s > 33 & s < 44 || s == 64) {
+//                    f3 = 1;
+//                }
         }
-        if(f1==1||f2==1||f3==1) {
+
+
+        if(f1==1||f2==1) {
             return true;
         }
         return false;

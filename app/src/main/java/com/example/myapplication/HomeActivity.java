@@ -3,15 +3,16 @@ package com.example.myapplication;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -22,7 +23,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        androidx.appcompat.widget.Toolbar toolbar =  findViewById(R.id.toolbar1);
+
+        androidx.appcompat.widget.Toolbar toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         drawerLayout = findViewById(R.id.drawer);
         NavigationView navigationView = findViewById(R.id.nav_views);
@@ -32,7 +34,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Home()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment, new Home()).commit();
             navigationView.setCheckedItem(R.id.home);
         }
 
@@ -43,17 +45,20 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.titlehome:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment, new Home()).commit();
+                break;
             case R.id.about:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new about()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment, new about()).commit();
                 break;
             case R.id.setting:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Setting()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment, new Setting()).commit();
                 break;
             case R.id.chat:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Contact()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment, new Contact()).commit();
                 break;
             case R.id.logout:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Logout()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment, new Logout()).commit();
                 break;
 
         }

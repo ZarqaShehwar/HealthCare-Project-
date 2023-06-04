@@ -31,10 +31,10 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAWjvNqyQLGgZsvtsX2eBKe4ftj-ID0540" />
 
-<!--        <activity-->
-<!--            android:name=".MapsActivity2"-->
-<!--            android:exported="false"-->
-<!--            android:label="@string/title_activity_maps2" />-->
+        <activity
+            android:name=".MapsActivity2"
+            android:exported="false"
+            android:label="@string/title_activity_maps2" />
 <!--        <activity-->
 <!--            android:name=".MapsActivity2"-->
 <!--            android:exported="false"-->
@@ -50,7 +50,7 @@
         <!-- android:name=".loginActivity" -->
         <!-- android:exported="false" /> -->
         <activity
-            android:name=".MapsActivity2"
+            android:name=".loginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

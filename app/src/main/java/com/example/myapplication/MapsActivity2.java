@@ -57,12 +57,16 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
         LatLng pakistan = new LatLng(33.738045, 73.084488);
         mMap.addMarker(new MarkerOptions().position(pakistan).title("Marker in Islambad"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(pakistan));
-if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)==PackageManager.PERMISSION_GRANTED){
-    mMap.setMyLocationEnabled(true);
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)==PackageManager.PERMISSION_GRANTED){
+            mMap.setMyLocationEnabled(true);
 
-}
+        }
 
-mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+
+
+
+
+        mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
 
 }
 }

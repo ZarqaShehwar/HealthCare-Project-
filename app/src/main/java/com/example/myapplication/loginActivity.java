@@ -3,6 +3,7 @@ package com.example.myapplication;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -20,10 +21,11 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class loginActivity extends AppCompatActivity {
     EditText editemail,password;
-    Button btn;
+    Button btn,mAP;
     TextView tv;
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +33,7 @@ public class loginActivity extends AppCompatActivity {
         editemail = findViewById(R.id.editTextLoginEmail);
         password=findViewById(R.id.editTextLoginPassword);
         btn=findViewById(R.id.Login);
+        mAP=findViewById(R.id.map1);
         tv= findViewById(R.id.Signup);
         btn.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -39,7 +42,7 @@ public class loginActivity extends AppCompatActivity {
                 String userpassword = password.getText().toString();
                 if(email.length()==0||userpassword.length()==0) {
 
-                    Toast.makeText(getApplicationContext(), "Please fill all fields", Toast.LENGTH_SHORT).show();
+
                 }
                 else {
                     firebaseAuth.signInWithEmailAndPassword(email,userpassword).
@@ -48,7 +51,7 @@ public class loginActivity extends AppCompatActivity {
                        public void onComplete(@NonNull Task<AuthResult> task) {
                            if(task.isSuccessful()){
                                Toast.makeText(getApplicationContext(),"Login Success",Toast.LENGTH_SHORT).show();
-                               startActivity(new Intent(loginActivity.this,MainActivity.class));
+                               startActivity(new Intent(loginActivity.this,HomeActivity.class));
 
                            }
                            else{
@@ -69,12 +72,19 @@ public class loginActivity extends AppCompatActivity {
        tv.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                startActivity(new Intent(loginActivity.this,HomeActivity.class));
+                startActivity(new Intent(loginActivity.this,RegistrationActivity.class));
 
             }
 
 
         });
+       mAP.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               startActivity(new Intent(loginActivity.this,MapsActivity2.class));
+           }
+       });
+
     }
 
 
